@@ -17,27 +17,52 @@ const inventors = [
   // Array.prototype.filter()
   // 1. Filter the array of inventors into a new array containing only the inventors born in the 1500's
   
+const newYear = inventors.filter(inventor => inventor.year >= 1500 && inventor.year <= 1599) 
+       
+    
+
+
+console.log(newYear)
+
+
+
+
   
   
   // Array.prototype.map()
   // 2. Map the array of the inventors into a new array containing objects with just the first and last names as properties
-  
-  
+
+let newNames = inventors.map(function(inventor){
+    return {first: inventor.first, last: inventor.last}
+  })
+  console.log(newNames)
   
   // Array.prototype.sort()
   // 3. Sort the inventors by birthdate, oldest to youngest
   
+  let oldToYoung = inventors.sort(function(old,young) {
+      return young.year - old.year
+  } )
+      
+console.log(oldToYoung)
   
   
   // 4. Sort the inventors by years lived from shortest to longest-lived
   
-  
+  let longLive = inventors.sort(function(short,long){
+      return (short.year - short.passed) - (long.year - long.passed)
+  })
+
+  console.log(longLive)
   
   // Array.prototype.reduce()
   // 5. How many years did all the inventors live?
-  
-  
-  
+ 
+  let totalYears = inventors.reduce((total, inventor) => (total + (inventor.passed - inventor.year)), 0)
+console.log(totalYears)
+
+
+
   const people = [
     'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry',
     'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul',
@@ -54,9 +79,12 @@ const inventors = [
   
   // Array.prototype.map()
   // 6. Map the people array such that the new array consists of strings with the names formatted as "First Last", e.g., "Becker, Carl" should be mapped to "Carl Becker".
+  const firstLast = people.map(names => names.split(",").reverse().join())
   
-  
-  
+  console.log(firstLast)
+
+
+
   const data = [
     'car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
     'bike', 'walk', 'car', 'van', 'car', 'truck'
@@ -66,6 +94,8 @@ const inventors = [
   // 7. Count the number of instances for each of the data items.
   // Hint:  Return an object where the keys are 'car', 'truck', etc. and the values are the count.
   
+  const newData = data.reduce((acc, num) => (!acc[num] ? acc[num] = 1 : acc[num]++, acc), {});
+  console.log(newData); 
   
   
   const devs = [
@@ -78,13 +108,24 @@ const inventors = [
   // Array.prototype.some()
   // 8. Check if at least one person is 19 or older?
   
+  let overNineTeen = devs.some(function(age) { 
+      return age.year < 2001 
+r 
+})
+  console.log(overNineTeen)
   
-  
+// why????? 
+
+
   // Array.prototype.every()
   // 9. Check if everyone is 19 or older?
+  let everyNineTeen = devs.every(function(age) { 
+    return age.year < 2001 
+r 
+})
+console.log(everyNineTeen)
   
-  
-  
+
   const comments = [
     { text: 'Love this!', id: 523423 },
     { text: 'Super good', id: 823423 },
@@ -96,8 +137,21 @@ const inventors = [
   // Array.prototype.find()
   // 10. Find the comment with the id of 823423
   
-  
+  const idNum = comments.find(function(numId){
+      if (numId.id === 823423) 
+      return numId.id
+  })
+  console.log(idNum)
   
   // Array.prototype.findIndex()
   // 11. Find the index of the comment with an id of 123523
   
+
+  const newComment = comments.findIndex(match => match.id === 123523)
+   
+  console.log(newComment)
+
+
+  // struggled with this but I have to move on in order to work on Tic Tac Toe, will revisit ! 
+
+
